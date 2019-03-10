@@ -1,0 +1,1 @@
+- [Bypassing XSS Detection Mechanisms](https://github.com/s0md3v/MyPapers/tree/master/Bypassing-XSS-detection-mechanisms) [PDF](https://github.com/s0md3v/MyPapers/blob/master/Bypassing-XSS-detection-mechanisms/Bypassing-XSS-Detection-Mechanisms.pdf)
