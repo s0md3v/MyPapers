@@ -134,7 +134,7 @@ The obfuscatable payload variant has the following structure:
 `<A{filler}hReF{?filler}={?filler}{quote}{special}:{javascript}{quote}{?filler}{>,//,Space,Tab,LF}`
 
 The noticeable difference between these two variants is the `{special}` component as well as the `{quote}`s.
-The `{special}` refers to an obfuscated version of the string `javascript` which can be obfuscated using using newline and horizontal tab characters, as follows:
+The `{special}` refers to an obfuscated version of the string `javascript` which can be obfuscated using newline and horizontal tab characters, as follows:
 
 - `j%0aAv%0dasCr%09ipt:`
 - `J%0aa%0av%0aa%0as%0ac%0ar%0ai%0ap%0aT%0a:`
