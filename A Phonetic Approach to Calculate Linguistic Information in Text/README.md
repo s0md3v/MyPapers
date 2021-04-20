@@ -121,7 +121,7 @@ Before we discuss the algorithm and its implementation, let us look at a sample 
 |------|---------------|-----------------------|-------------------------|
 | Pulp | 3             | 3                     | 0                       |
 | Pelp | 3             | 3                     | 0                       |
-| Pqlp | 3             | 0                     | 3                       |
+| Pqlp | 3             | 1                     | 2                       |
 
 Pulp is a valid word and it can be pronounced without any difficulties. Pelp is a made-up word but it is pronounceable, it is eligible to be incorporated into the English language. Pqlp is another made-up word but it’s not pronounceable and hence has no place in English and can be considered as gibberish.
 
