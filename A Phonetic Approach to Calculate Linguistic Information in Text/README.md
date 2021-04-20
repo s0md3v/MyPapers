@@ -43,7 +43,7 @@ Entropy is a concept that has been a topic of interest since it was termed. Ther
 ## Entropy
 > Information entropy is the average rate at which information is produced by a stochastic source of data.[[3]](https://github.com/s0md3v/MyPapers/new/master/A%20Phonetic%20Approach%20to%20Calculate%20Linguistic%20Information%20in%20Text#references)
 
-In absolute layman's terms, *”Every time something happens, its probability of it happening again increases. The less it happens, the more surprising it is i.e. the more information it generates. Entropy is the average of the amount of generated information by a source.
+In absolute layman's terms, *”Every time something happens, the probability of it happening again increases. The less it happens, the more surprising it is i.e. the more information it generates. Entropy is the average of the amount of generated information by a source.
 The more unique things happen, the more is the entropy and the more random the source is. The more same things happen, the less is the entropy and the more predictable the source is.”*
 
 The entropy of a text string is inversely proportional to the average of the frequencies of individual characters present in the string. Hence, the more unique characters are present in a string, the more entropy it has.
