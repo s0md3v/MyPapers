@@ -1,3 +1,5 @@
+> Note: This is embarrasing but as it turns out, whatever I did here is simply a Markov Chain with n=2. IT IS NOT NOVEL RESEARCH. Not having a computer science background, I didn't know any better.
+
 # A Phonetic Approach to Calculate Linguistic Information in Text
 ##### - Somdev Sangwan
 
