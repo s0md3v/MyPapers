@@ -2,6 +2,7 @@ This is a polynomial-time algorithm to solve the Subset Sum Problem.
 
 Below is a rough description of how the algorithm works. It is not comprehensive and is only being added to be added to help with initial peer-review and a proof of invention.
 
+```
 1. Given subset: S
 2. Target sum: T
 3. Sort the subset S in increasing order.
@@ -24,3 +25,4 @@ Below is a rough description of how the algorithm works. It is not comprehensive
    8.2. If this sum is less than then T, reject this number and move to the next number in set.
    8.3. If the end of this accquired set is reached, increase N by 1 and go back to 6.
 9. Keep repeating steps 6 to 8 until a solution is found or length of buffer reaches M.
+```
