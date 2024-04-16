@@ -3,9 +3,9 @@ This is a polynomial-time algorithm to solve the Subset Sum Problem.
 Below is a rough description of how the algorithm works. It is not comprehensive and is only being added to be added to help with initial peer-review and a proof of invention.
 
 ```
-1. Given subset: S
+1. Given set: S
 2. Target sum: T
-3. Sort the subset S in increasing order.
+3. Sort the set S in increasing order.
 4. Remove any numbers that are greater than T.
 5. Iterate over S in a decreasing order while adding the iterated numbers until we get a sum greater than T. The length of subset formed until this point is N i.e. the minimum possible length of the solution subset.
    5.1 If we iterate through S without the sum becoming greater than T, a solution doesn't exist i.e. even the sum of the entire set is less than T.
