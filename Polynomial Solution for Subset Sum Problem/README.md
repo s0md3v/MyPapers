@@ -3,8 +3,9 @@ This is a polynomial-time algorithm to solve the Subset Sum Problem. It uses cal
 Below is a rough description of how the algorithm works. It is not comprehensive and is only being added to be added to help with initial peer-review and a proof of invention.
 
 ```
-Given set: S
+Given set of positive integers: S
 Target sum: T
+Problem: Find a subset of S (if it exists) such that its sum is equal to T.
 
 1. Sort the set S in increasing order.
 2. Remove any numbers that are greater than T. Adding anything to them will only result in number larger than T.
