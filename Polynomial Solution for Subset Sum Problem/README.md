@@ -1,6 +1,6 @@
 This is a polynomial-time algorithm to solve the Subset Sum Problem. It uses calculations based on digital root and last digit of the target sum to reduce the time complexity by never considering "unfit" numbers for a sum.
 
-Below is a rough description of how the algorithm works. It is not comprehensive and is only being added to be added to help with initial peer-review and a proof of invention.
+Below is a rough description of how the algorithm works. It is not comprehensive (or final) and has only been added to help with initial peer-review and as a proof of invention.
 
 ```
 Given set of positive integers: S
