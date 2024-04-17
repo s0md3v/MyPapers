@@ -1,3 +1,19 @@
+"""
+This is a pre-calculated table of digital root calculations.
+{current_digital_root: {target_digital_root: digitaL_root_to_add, ...}, ...}
+"""
+
+root_map = {
+    1: {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8, 1: 9},
+    2: {3: 1, 4: 2, 5: 3, 6: 4, 7: 5, 8: 6, 9: 7, 1: 8, 2: 9},
+    3: {4: 1, 5: 2, 6: 3, 7: 4, 8: 5, 9: 6, 1: 7, 2: 8, 3: 9},
+    4: {5: 1, 6: 2, 7: 3, 8: 4, 9: 5, 1: 6, 2: 7, 3: 8, 4: 9},
+    5: {6: 1, 7: 2, 8: 3, 9: 4, 1: 5, 2: 6, 3: 7, 4: 8, 5: 9},
+    6: {7: 1, 8: 2, 9: 3, 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9},
+    7: {8: 1, 9: 2, 1: 3, 2: 4, 3: 5, 4: 6, 5: 7, 6: 8, 7: 9},
+    8: {9: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9},
+    9: {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9}}
+
 def find_solution(required_sum, array):
     """
     Find a subset of array that sums to required_sum.
@@ -44,7 +60,15 @@ def find_solution(required_sum, array):
             end = index
             break
 
+    mapping = {i: {j: [] for j in range(10)} for i in range(1, 10)}
+
+    for i in array:
+        this_sum = (i - 1) % 9 + 1 # python syntax for finding digital root of i
+        req_last = i % 10
+        mapping[this_sum][req_last].append(i)
+
     array_length = len(array)
+    req_root, req_last = (required_sum - 1) % 9 + 1, required_sum % 10
     steps = 1
     buffer_end = min(array_length, len(array))
     buffer_start = buffer_end - start - steps
@@ -55,8 +79,10 @@ def find_solution(required_sum, array):
         if running_total <= required_sum:
             if running_total == required_sum:
                 return buffer
+            for_root = root_map[(running_total - 1) % 9 + 1][req_root]
+            for_last = (req_last - running_total % 10) % 10
             temp_small = True
-            for i in array:
+            for i in mapping[for_root][for_last]:
                 if running_total + i >= required_sum:
                     temp_small = False
                     if running_total + i == required_sum:
