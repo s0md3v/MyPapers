@@ -122,19 +122,22 @@ def find_solution(required_sum, array):
                 array = array[:remove_till]
             break
 
-    end = 0 # maximum possible length of the solution subset
+    start = 0 # maximum possible length of the solution subset
     this_sum = 0
 
     for index, i in enumerate(reversed(array)):
         this_sum += i
         if this_sum > required_sum:
             if index == 0:
-                end = 2
-            end = 2 if index - 1 <= 1 else index - 1 
+                start = 2
+            start = 2 if index - 1 <= 1 else index - 1 
             break
-        return [] # the sum of entire set is less than required_sum, solution doesn't exist
+        start = -1
 
-    start = 0 # minimum possible length of the solution subset
+    if start == -1: # if sum of entire set is less than required_sum
+        return
+
+    end = 0 # minimum possible length of the solution subset
     this_sum = 0
     for index, i in enumerate(array):
         this_sum += i
@@ -142,11 +145,10 @@ def find_solution(required_sum, array):
             end = index
             break
 
-    # mapping of each number in the set to its digital root and last digit
     mapping = {i: {j: [] for j in range(10)} for i in range(1, 10)}
 
     for i in array:
-        this_sum = (i - 1) % 9 + 1 # digital root, used throughout the algorithm
+        this_sum = (i - 1) % 9 + 1
         req_last = i % 10
         mapping[this_sum][req_last].append(i)
 
