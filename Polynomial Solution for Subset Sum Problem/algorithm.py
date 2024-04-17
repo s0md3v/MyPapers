@@ -101,6 +101,8 @@ def find_solution(required_sum, array):
             break
         start = -1
 
+    if this_sum == required_sum:
+        return array
     if start == -1: # if sum of entire set is less than required_sum
         return
 
