@@ -1,6 +1,12 @@
 This is a polynomial-time algorithm to solve the Subset Sum Problem. It uses calculations based on digital root and last digit of the target sum to reduce the time complexity by never considering "unfit" numbers for a sum.
 
-To test it, add `print(find_solution(18, [1, 6, 6, 4, 5, 12, 15, 21, 53]))` at the end of algorithm.py file and then run it.
+To test it, add `print(find_solution(18, [1, 6, 6, 4, 5, 12, 15, 21, 53]))` at the end of algorithm.py file and then run it. If you want to benchmark the time-taken for large input values, you can do something like:
+```python
+import random
+required_sum = 1176564594
+array = random.sample(range(1, 500000), 200000) # generate 200000 numbers between 1 and 499999
+find_solution(required_sum, array)
+```
 
 Below is a rough description of how the algorithm works. It is not comprehensive (or final) and has only been added to help with initial peer-review and as a proof of invention.
 
