@@ -37,6 +37,7 @@ def start_growing(array, mapping, req_sum, req_root, req_last, start, end, end_w
     running_total = sum(array[buffer_start:buffer_end])
     while buffer_end - buffer_start <= end:
         buffer = array[buffer_start:buffer_end]
+        all_small = True
         if running_total <= req_sum:
             if running_total == req_sum:
                 return buffer
@@ -44,10 +45,11 @@ def start_growing(array, mapping, req_sum, req_root, req_last, start, end, end_w
             for_last = (req_last - running_total % 10) % 10
             for i in mapping[for_root][for_last]:
                 if running_total + i >= req_sum:
+                    all_small = False
                     if running_total + i == req_sum:
                         return buffer + [i]
                     break # only larger numbers are left, no need to continue
-        if not buffer:
+        if not buffer or all_small: # all_small is True if rest of the numbers are too small for req_sum
             steps += 1
             buffer_end = min(end_with - steps, len(array))
             buffer_start = buffer_end - (start + steps)
