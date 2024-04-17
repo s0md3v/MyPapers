@@ -14,7 +14,6 @@ root_map = {
     8: {9: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9},
     9: {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9}}
 
-
 def start_growing(array, mapping, req_sum, req_root, req_last, start, end, end_with):
     """
     Grow the buffer until 'end' to find a subset of numbers that sum to req_sum.
@@ -35,26 +34,26 @@ def start_growing(array, mapping, req_sum, req_root, req_last, start, end, end_w
     buffer_end = min(end_with, len(array))
     buffer_start = buffer_end - start - steps
     running_total = sum(array[buffer_start:buffer_end])
+    indexes_reset = {i: {j: 0 for j in range(10)} for i in range(1, 10)}
     while buffer_end - buffer_start <= end:
         buffer = array[buffer_start:buffer_end]
-        all_small = True
         if running_total <= req_sum:
             if running_total == req_sum:
                 return buffer
+            indexes = indexes_reset
             for_root = root_map[(running_total - 1) % 9 + 1][req_root]
             for_last = (req_last - running_total % 10) % 10
             for i in mapping[for_root][for_last]:
                 if running_total + i >= req_sum:
-                    all_small = False
                     if running_total + i == req_sum:
                         return buffer + [i]
-                    break # only larger numbers are left, no need to continue
-        if not buffer or all_small: # all_small is True if rest of the numbers are too small for req_sum
+                    break
+        if not buffer:
             steps += 1
             buffer_end = min(end_with - steps, len(array))
             buffer_start = buffer_end - (start + steps)
             buffer = array[buffer_start:buffer_end]
-            if not buffer: # end of set reached, solution doesn't exist
+            if not buffer:
                 break
             continue
         running_total -= array[buffer_end-1]
@@ -112,7 +111,7 @@ def find_solution(required_sum, array):
     mapping = {i: {j: [] for j in range(10)} for i in range(1, 10)}
 
     for i in array:
-        this_sum = (i - 1) % 9 + 1 # python syntax for finding digital root of i
+        this_sum = (i - 1) % 9 + 1
         req_last = i % 10
         mapping[this_sum][req_last].append(i)
 
