@@ -11,6 +11,8 @@ print(solution)
 print("seconds taken:", time.time() - start)
 ```
 
+## Overview
+
 Below is a rough description of how the algorithm works. It is not comprehensive (or final) and has only been added to help with initial peer-review and as a proof of invention.
 
 ```
@@ -35,3 +37,32 @@ Problem: Find a subset of S (if it exists) such that its sum is equal to T.
    6.4 If the end of this accquired set is reached, increase N by 1 and go back to 6.
 8. Keep repeating steps 5 and 8 until a solution is found or length of buffer reaches M.
 ```
+
+## Proof (WIP)
+
+Below is WIP mathematical proof that its time-complexity is polynomial:
+
+1. Sorting the array: Sorting an array of length 𝑛 generally takes 𝑂(𝑛 log 𝑛) time.
+
+2. Finding the upper bound of the subset: In the worst case, this step involves iterating over entire the sorted array once, which takes 𝑂(𝑛) time.
+
+3. Finding the lower bound of the subset: Similar to step 2, this step also involves iterating over the sorted array once until a condition is met, taking 𝑂(𝑛) time in worst case.
+
+4. Searching for the subset: Let's denote the length of the array as 𝑛. After sorting, we have upper and lower bounds within which the subset must lie. Let 𝑚 denote the length of the subarray (buffer) we consider in each iteration of the while loop. This 𝑚 is bounded by the difference between the upper and lower bounds, and thus 𝑚 ≤ 𝑛.
+
+Now, within the while loop:
+
+- Operations such as summing elements of sub-arrays and checking conditions are done in constant time 𝑂(1).
+- The size of the subarray (buffer) over which we iterate within the while loop can vary, but it's bounded by 𝑛.
+
+Therefore, the time complexity of the while loop is 𝑂(𝑚), where 𝑚 is bounded by 𝑛.
+
+Combining all the steps, the overall time complexity of the algorithm is the sum of the time complexities of the individual steps:
+
+𝑂(𝑛 log 𝑛) + 𝑂(𝑛) + 𝑂(𝑛) + 𝑂(𝑚)
+
+Since 𝑚 is bounded by 𝑛, we can simplify this to:
+
+𝑂(𝑛 log 𝑛) + 𝑂(𝑛) + 𝑂(𝑛) + 𝑂(𝑛) = 𝑂(𝑛 log 𝑛)
+
+Thus, the time complexity of the algorithm is 𝑂(𝑛 log 𝑛).
