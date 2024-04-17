@@ -18,8 +18,8 @@ Problem: Find a subset of S (if it exists) such that its sum is equal to T.
    6.2 If its sum is equal to T, we have found our solution.
    6.3 If its sum is less than T, proceed to 7.
 7. Lets call the sum of this buffer, BS.
-   7.1 Find the digital root of this BS, and calculate what digital(s) root should be added to it to make it equal to the digital root of T.
-   7.2. Calculate what digit(s) should be added to it to make the last digit of their sum equal to the last digit of T.
+   7.1 Find the digital root of this BS, and calculate what digital root should be added to it to make it equal to the digital root of T.
+   7.2. Calculate what digit should be added to it to make the last digit of their sum equal to the last digit of T.
    7.3. Use the information accquired to find the respective subset of numbers in the mapping, call this subset AS and proceed to 8.
 8. Add the first (smallest) number from AS to the sum of buffer.
    8.1 If this sum is equal to T, we have found our solution.
