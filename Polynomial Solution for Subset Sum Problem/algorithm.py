@@ -14,47 +14,6 @@ root_map = {
     8: {9: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9},
     9: {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9}}
 
-
-def process_buffer(seed_buffer, mapping, req_sum, req_root, req_last, indexes):
-    """
-    Process the buffer to find a sequence of numbers that meet the requirements.
-    
-    Parameters:
-    seed_buffer (list): The number sequence.
-    req_sum (int): The required sum.
-    req_root (int): The required digital root.
-    req_last (int): The required last digit.
-    indexes (dict): The indexes for mapping.
-
-    Returns:
-    list: The sequence of numbers that meet the requirements.
-    """
-    buffer, buffer_sum = [], 0
-    good_buffers = [(seed_buffer, sum(seed_buffer))]
-    previous_cords = [0, 0]
-    for_root, for_last = 0, 0
-    while good_buffers:
-        buffer, buffer_sum = good_buffers.pop()
-        for_root = root_map[(buffer_sum - 1) % 9 + 1][req_root]
-        for_last = (req_last - buffer_sum % 10) % 10
-        this_array = mapping[for_root][for_last]
-        if not this_array:
-            break
-        index = indexes[for_root][for_last]
-        i = this_array[index]
-        if buffer_sum + i >= req_sum:
-            if buffer_sum + i == req_sum:
-                return buffer + [i]
-            break
-        elif index + 1 <= len(this_array) - 1:
-            if buffer_sum + this_array[index+1] <= req_sum:
-                if previous_cords != [for_root, for_last]:
-                    good_buffers.append((buffer + [this_array[index+1]],buffer_sum + this_array[index+1]))
-                    indexes[for_root][for_last] += 1
-                previous_cords = [for_root, for_last]
-    return []
-
-
 def start_growing(array, mapping, req_sum, req_root, req_last, start, end, end_with):
     """
     Grow the buffer until 'end' to find a subset of numbers that sum to req_sum.
@@ -82,9 +41,13 @@ def start_growing(array, mapping, req_sum, req_root, req_last, start, end, end_w
             if running_total == req_sum:
                 return buffer
             indexes = indexes_reset
-            result = process_buffer(buffer, mapping, req_sum, req_root, req_last, indexes)
-            if result:
-                return result
+            for_root = root_map[(running_total - 1) % 9 + 1][req_root]
+            for_last = (req_last - running_total % 10) % 10
+            for i in mapping[for_root][for_last]:
+                if running_total + i >= req_sum:
+                    if running_total + i == req_sum:
+                        return buffer + [i]
+                    break
         if not buffer:
             steps += 1
             buffer_end = min(end_with - steps, len(array))
