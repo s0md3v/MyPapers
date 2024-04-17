@@ -35,7 +35,7 @@ Problem: Find a subset of S (if it exists) such that its sum is equal to T.
    6.2 If this sum is less than then T, reject this number and move to the next number in S.
    6.3 If all the numbers in set resulted in a sum less than T, increase N by 1 and go back to 6. This is done because if all sums for the N-1 largest numbers isn't big enough, the rest of S is only smaller because we are iterating bigges->smallest.
    6.4 If the end of this accquired set is reached, increase N by 1 and go back to 6.
-8. Keep repeating steps 5 and 8 until a solution is found or length of buffer reaches M.
+7. Keep repeating steps 5 and 6 until a solution is found or length of buffer reaches M.
 ```
 
 ## Proof (WIP)
